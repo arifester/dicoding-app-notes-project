@@ -36,3 +36,16 @@ main {
   margin: 2rem auto;
   padding: 0 20px;
 }
+
+/* Responsive Adjustments for Mobile */
+@media screen and (max-width: 768px) {
+  main {
+    padding: 0 16px; /* Smaller padding on mobile */
+    margin: 1rem auto;
+  }
+
+  /* Make the form full width on mobile */
+  note-input {
+    margin-bottom: 24px;
+  }
+}
