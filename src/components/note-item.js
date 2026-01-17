@@ -46,7 +46,6 @@ class NoteItem extends HTMLElement {
       <style>
         :host {
           display: block;
-          height: 100%; /* Important to keep card heights uniform in the Grid */
         }
         
         .note-card {
@@ -55,7 +54,6 @@ class NoteItem extends HTMLElement {
           border-radius: 12px;
           box-shadow: 0 4px 6px rgba(0,0,0,0.05);
           padding: 24px;
-          height: 100%; /* Card fills the full height of the grid cell */
           display: flex;
           flex-direction: column;
           border: 1px solid rgba(0,0,0,0.03);

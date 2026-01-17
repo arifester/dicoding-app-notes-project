@@ -1,8 +1,20 @@
 class AppBar extends HTMLElement {
   constructor() {
     super();
-    // Enable Shadow DOM for style isolation
     this.shadowDOM = this.attachShadow({ mode: 'open' });
+  }
+
+  // Define observed attributes
+  static get observedAttributes() {
+    return ['title'];
+  }
+
+  // React to attribute changes
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === 'title' && oldValue !== newValue) {
+      // Re-render only if title changes
+      this.render();
+    }
   }
 
   connectedCallback() {
@@ -10,6 +22,9 @@ class AppBar extends HTMLElement {
   }
 
   render() {
+    // Get title from attribute or set a default fallback
+    const title = this.getAttribute('title') || 'Notes App';
+
     this.shadowDOM.innerHTML = `
       <style>
         :host {
@@ -17,24 +32,27 @@ class AppBar extends HTMLElement {
           width: 100%;
           color: #ffffff;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          margin-bottom: 2rem; /* Add margin to separate from content */
         }
         
         div {
-          padding: 16px 20px;
+          padding: 24px 20px;
           background-color: var(--primary-color, #2c3e50);
         }
         
         h1 {
           margin: 0;
-          font-size: 1.5rem;
+          font-size: 1.8rem;
           font-weight: 600;
           text-align: center;
           letter-spacing: 1px;
+          /* Optional: Add text shadow for better contrast */
+          text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
       </style>
       
       <div>
-        <h1>Notes App</h1>
+        <h1>${title}</h1>
       </div>
     `;
   }
